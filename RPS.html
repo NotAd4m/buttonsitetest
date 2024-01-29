@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock-Paper-Scissors</title>
+</head>
+<body>
+    <h1>Rock-Paper-Scissors Game</h1>
+    <p>1 = Rock, 2 = Paper, 3 = Scissors</p>
+    <button onclick="playGame()">Play Game</button>
+    <p id="result"></p>
+
+    <script>
+        function playGame() {
+            const table = ["Rock", "Paper", "Scissors"];
+            const userChoice = prompt("Choose one (1/2/3):");
+            if (userChoice !== "1" && userChoice !== "2" && userChoice !== "3") {
+                alert("Invalid choice. Please choose 1, 2, or 3.");
+                return;
+            }
+
+            const userIndex = parseInt(userChoice) - 1;
+            const botIndex = Math.floor(Math.random() * 3);
+
+            const userSelection = table[userIndex];
+            const botSelection = table[botIndex];
+
+            alert("You chose: " + userSelection);
+            alert("Bot chose: " + botSelection);
+
+            let result;
+            if (userSelection === botSelection) {
+                result = "It's a Draw!";
+            } else if (
+                (userSelection === "Rock" && botSelection === "Scissors") ||
+                (userSelection === "Paper" && botSelection === "Rock") ||
+                (userSelection === "Scissors" && botSelection === "Paper")
+            ) {
+                result = "You Won!";
+            } else {
+                result = "Bot Won!";
+            }
+
+            document.getElementById("result").textContent = result;
+        }
+    </script>
+</body>
+</html>
